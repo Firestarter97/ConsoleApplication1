@@ -94,7 +94,6 @@ class person: public chase
         person(long int accountNum, long int balanceAmount, std::string userName, std::string password, std::string name)
             : chase{accountNum, balanceAmount, userName, password}, name{name} {}
 
-
         void setname(std::string newName)
         {
             name = newName;
@@ -255,7 +254,6 @@ void chase::displaySignIn(std::unordered_map<std::string, person>& userDatabase)
 
         std::system("cls");
         std::cout << "Incorrect Username or Password. Press 1 to try again or Press 2 to Exit\n";
-
         std::cin >> tryAgain;
         std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n'); // Clear any extra input
         if (tryAgain == '2')
