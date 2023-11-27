@@ -13,7 +13,6 @@
 #include <sstream>
 #include <openssl/evp.h>
 
-
 //In C++, forward declaration for a class is a way to declare the existence of a class without providing its full definition. 
 //This is useful when you need to use a class in a context where only the class name is needed, like declaring a pointer or a 
 //reference to an object of that class.
@@ -27,7 +26,6 @@ class chase
         long int balanceAmount;
         std::string userName;
         std::string password;
-        
 
     //public members of chase class
     public:
@@ -64,7 +62,7 @@ class chase
         }
 
         // getters to access the private variables
-        long int getaccNum()
+        long int const getaccNum()
         {
             return accountNum;
         }
@@ -216,8 +214,6 @@ void chase::displayCreateNewAcc(std::unordered_map<std::string, person>& userDat
 
     // Distributions for account numbers and IDs
     std::uniform_int_distribution<long int> accountNumDistribution(100000000, 999999999); // Range for a 9-digit number
-    
-    //int id = static_cast<int>(userDatabase.size()) + 1; // Explicitly cast the size_t to int
 
     person newPerson(accountNumDistribution(accountNumGenerator), balanceAmount, newUserName, newPassword, newName);
     userDatabase[newUserName] = newPerson;
@@ -240,14 +236,7 @@ void chase::displaySignIn(std::unordered_map<std::string, person>& userDatabase)
         std::cin >> tempUsername;
 
         // Check if the user exists in the map
-        
-        /*auto userIter = std::find_if(userDatabase.begin(), userDatabase.end(),
-            [tempUsername](const std::pair<int, person>& user) {
-                return user.second.getUserName() == tempUsername;
-            });
-        */
         auto userIter = userDatabase.find(tempUsername);
-
 
         if (userIter != userDatabase.end())
         {
@@ -344,21 +333,9 @@ void chase::displayAccount(std::unordered_map<std::string, person>& userDatabase
     } while (1);
 }
 
-
 int main()
 {
     std::unordered_map<std::string, person> userDatabase;
     person obj;
     obj.displayWelcomeScreen(userDatabase);
 }
-
-// Run program: Ctrl + F5 or Debug > Start Without Debugging menu
-// Debug program: F5 or Debug > Start Debugging menu
-
-// Tips for Getting Started: 
-//   1. Use the Solution Explorer window to add/manage files
-//   2. Use the Team Explorer window to connect to source control
-//   3. Use the Output window to see build output and other messages
-//   4. Use the Error List window to view errors
-//   5. Go to Project > Add New Item to create new code files, or Project > Add Existing Item to add existing code files to the project
-//   6. In the future, to open this project again, go to File > Open > Project and select the .sln file
